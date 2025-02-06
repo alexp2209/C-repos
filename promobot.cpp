@@ -174,7 +174,7 @@ void quickSort(abstractGeometricFigure** figures, int left, int right, bool(*com
 }
 void quickSortDaughter(abstractGeometricFigure** figures, int left, int right, bool(*compare)(abstractGeometricFigure*, abstractGeometricFigure*),int size)
 {
-    lock_guard<mutex> lock(sortArray_mutex); // Блокировка мьютекса
+    lock_guard<mutex> lock(sortArray_mutex); 
     quickSort(figures, left, right, compare);
     displayArray(figures, size);
     cout << "ID thread end = " << this_thread::get_id() << endl;
@@ -208,8 +208,6 @@ void insertSort(abstractGeometricFigure** figures, int size)
         int key = figures[i]->squareArea(0, 0);
         int j = i - 1;
         abstractGeometricFigure* key_copy = figures[i];
-
-        // Сдвигать элементы вправо и вставить ключ
 
         while (j >= 0 && figures[j]->squareArea(0, 0) > key) {
             figures[j + 1] = figures[j];
@@ -247,17 +245,15 @@ int main()
         cout << endl;
         
 
-    
-
     //Size Figures 
     int size = sizeof(figures) / sizeof(figures[0]);
     
-    thread first(bubbleSort, figures, size); // Передача функции и аргумента
+    thread first(bubbleSort, figures, size);
 
     thread second(insertSort, figures, size);
 
     thread third(quickSortDaughter,figures, 0, size - 1, compareFiguresByArea, size);
-    //displayArray(figures, size);
+    
 
 
     first.join();
