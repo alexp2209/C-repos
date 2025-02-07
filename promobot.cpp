@@ -262,7 +262,12 @@ int main()
     first.join();
     second.join();
     third.join();
-    
+
+    for (int I = 0; I < 4; ++I) 
+    {
+        delete figures[I]; 
+        figures[I] = nullptr;
+    }
     
     return 0;
 }
