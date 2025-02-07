@@ -176,8 +176,9 @@ void quickSortDaughter(abstractGeometricFigure** figures, int left, int right, b
 {
     lock_guard<mutex> lock(sortArray_mutex); 
     quickSort(figures, left, right, compare);
+    cout << "quickSort" << endl;
     displayArray(figures, size);
-    cout << "ID thread end = " << this_thread::get_id() << endl;
+    cout << "ID thread end = " << this_thread::get_id() << endl << endl;
 }
 
 void bubbleSort(abstractGeometricFigure** figures,int size)
@@ -196,8 +197,9 @@ void bubbleSort(abstractGeometricFigure** figures,int size)
             }
         }
     }
+    cout << "bubleSort" << endl;
     displayArray(figures, size);
-    cout << "ID thread end = " << this_thread::get_id() << endl;
+    cout << "ID thread end = " << this_thread::get_id() << endl << endl;
 }
 
 void insertSort(abstractGeometricFigure** figures, int size)
@@ -216,8 +218,9 @@ void insertSort(abstractGeometricFigure** figures, int size)
         figures[j + 1] = key_copy;
 
     }
+    cout << "insertSort" << endl;
     displayArray(figures, size);
-    cout << "ID thread end = " << this_thread::get_id() << endl;
+    cout << "ID thread end = " << this_thread::get_id() << endl << endl;
 }
 
 int main()
